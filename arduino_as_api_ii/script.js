@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 /*
   This script communicates unidirectionally with an Arduino through JSON.
@@ -13,10 +13,12 @@
   - Love Lagerkvist, 220114, Malmö Universitet
 */
 
+
 if (!("serial" in navigator)) {
   // The Web Serial API is not supported.
   alert("Your browser does not support Web Serial, try using something Chromium based.")
 }
+
 
 const requestPortButton = document.querySelector("#request-port-access");
 requestPortButton.addEventListener("pointerdown", async (event) => {
@@ -36,12 +38,17 @@ requestPortButton.addEventListener("pointerdown", async (event) => {
     console.log(state);
 });
 
+
+// A PWM LED accepts a range of values for brightness, so we
+// represent that as a slider/input=range.
+// The event listeners update the state and attempts to communicate with the Arduino
 const brightnessSlider = document.querySelector("#brightness-slider");
 brightnessSlider.addEventListener("input", (event) => { // NOTE: input vs change
     const brightness = event.target.value;
     state.brightness = parseInt(brightness);
     writeBrightnessToArduino();
 });
+
 
 // Try to write the currently set brightness to the Arduino
 const writeBrightnessToArduino = async () => {
@@ -55,7 +62,6 @@ const writeBrightnessToArduino = async () => {
     const payload = new TextEncoder().encode(json);
     await state.serial.writer.write(payload);
 }
-
 
 
 const state = {

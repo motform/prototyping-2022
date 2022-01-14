@@ -4,7 +4,7 @@
   This code assumes you have version 16.19.1 of ArduinoJson.
   It should work with most 6.x versions, but that is guaranteed. 
 
-  — Love Lagerkvist, 210114
+  — Love Lagerkvist, 220114
      Malmö Universitet
 */
 
