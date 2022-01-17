@@ -1,0 +1,220 @@
+{
+  "error": false,
+  "statusCode": 200,
+  "message": "OK",
+  "data": {
+    "lastChecked": "2022-01-17T09:53:58.775Z",
+    "covid19Stats": [
+      {
+        "city": null,
+        "province": "Blekinge",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Blekinge, Sweden",
+        "confirmed": 17524,
+        "deaths": 139,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Dalarna",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Dalarna, Sweden",
+        "confirmed": 39825,
+        "deaths": 368,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Gavleborg",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Gavleborg, Sweden",
+        "confirmed": 46542,
+        "deaths": 579,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Gotland",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Gotland, Sweden",
+        "confirmed": 6179,
+        "deaths": 54,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Halland",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Halland, Sweden",
+        "confirmed": 60486,
+        "deaths": 341,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Jamtland Harjedalen",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Jamtland Harjedalen, Sweden",
+        "confirmed": 19636,
+        "deaths": 130,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Jonkoping",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Jonkoping, Sweden",
+        "confirmed": 56131,
+        "deaths": 575,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Kalmar",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Kalmar, Sweden",
+        "confirmed": 33087,
+        "deaths": 263,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Kronoberg",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Kronoberg, Sweden",
+        "confirmed": 28951,
+        "deaths": 333,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Norrbotten",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Norrbotten, Sweden",
+        "confirmed": 33369,
+        "deaths": 299,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Orebro",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Orebro, Sweden",
+        "confirmed": 45898,
+        "deaths": 364,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Ostergotland",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Ostergotland, Sweden",
+        "confirmed": 54594,
+        "deaths": 670,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Skane",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Skane, Sweden",
+        "confirmed": 227458,
+        "deaths": 1871,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Sormland",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Sormland, Sweden",
+        "confirmed": 37189,
+        "deaths": 492,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Stockholm",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Stockholm, Sweden",
+        "confirmed": 388644,
+        "deaths": 4634,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Uppsala",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Uppsala, Sweden",
+        "confirmed": 56449,
+        "deaths": 562,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Varmland",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Varmland, Sweden",
+        "confirmed": 31447,
+        "deaths": 233,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Vasterbotten",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Vasterbotten, Sweden",
+        "confirmed": 33000,
+        "deaths": 204,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Vasternorrland",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Vasternorrland, Sweden",
+        "confirmed": 34337,
+        "deaths": 489,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Vastmanland",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Vastmanland, Sweden",
+        "confirmed": 43550,
+        "deaths": 391,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Vastra Gotaland",
+        "country": "Sweden",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Vastra Gotaland, Sweden",
+        "confirmed": 266067,
+        "deaths": 2522,
+        "recovered": null
+      }
+    ]
+  }
+}

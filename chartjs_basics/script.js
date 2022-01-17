@@ -16,6 +16,7 @@ const labels = [
   "June",
 ];
 
+
 const data = {
   labels: labels,
   datasets: [{
@@ -26,11 +27,13 @@ const data = {
   }]
 };
 
+
 const config = {
   type: "line",
   data: data,
   options: {}
 };
+
 
 const canvas = document.querySelector("#chart-js-canvas");
 const chart = new Chart(canvas, config); // This is the magic line.
