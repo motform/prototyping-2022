@@ -38,7 +38,7 @@ const localJSON = async (path, callback) => {
 
 // We need to host a local server (through Live Preview) to get the file,
 // So we use the leading slash in the path-name
-const JSONPath = "/example.json"
+const JSONPath = "/example.json";
 
 
 // We use our async function to get the JSON and we provide an inline/anonymous
