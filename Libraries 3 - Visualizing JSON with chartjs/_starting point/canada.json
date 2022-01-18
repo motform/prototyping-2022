@@ -1,0 +1,170 @@
+{
+  "error": false,
+  "statusCode": 200,
+  "message": "OK",
+  "data": {
+    "lastChecked": "2022-01-17T09:53:58.775Z",
+    "covid19Stats": [
+      {
+        "city": null,
+        "province": "Alberta",
+        "country": "Canada",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Alberta, Canada",
+        "confirmed": 436495,
+        "deaths": 3380,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "British Columbia",
+        "country": "Canada",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "British Columbia, Canada",
+        "confirmed": 293521,
+        "deaths": 2468,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Diamond Princess",
+        "country": "Canada",
+        "lastUpdate": "2020-12-21T13:27:30+00:00",
+        "keyId": "Diamond Princess, Canada",
+        "confirmed": 0,
+        "deaths": 1,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Grand Princess",
+        "country": "Canada",
+        "lastUpdate": "2020-12-21T13:27:30+00:00",
+        "keyId": "Grand Princess, Canada",
+        "confirmed": 13,
+        "deaths": 0,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Manitoba",
+        "country": "Canada",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Manitoba, Canada",
+        "confirmed": 107838,
+        "deaths": 1443,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "New Brunswick",
+        "country": "Canada",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "New Brunswick, Canada",
+        "confirmed": 22768,
+        "deaths": 187,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Newfoundland and Labrador",
+        "country": "Canada",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Newfoundland and Labrador, Canada",
+        "confirmed": 12092,
+        "deaths": 24,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Northwest Territories",
+        "country": "Canada",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Northwest Territories,Canada",
+        "confirmed": 3741,
+        "deaths": 12,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Nova Scotia",
+        "country": "Canada",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Nova Scotia, Canada",
+        "confirmed": 28736,
+        "deaths": 117,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Nunavut",
+        "country": "Canada",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Nunavut, Canada",
+        "confirmed": 1055,
+        "deaths": 4,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Ontario",
+        "country": "Canada",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Ontario, Canada",
+        "confirmed": 956972,
+        "deaths": 10650,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Prince Edward Island",
+        "country": "Canada",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Prince Edward Island, Canada",
+        "confirmed": 3861,
+        "deaths": 0,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Quebec",
+        "country": "Canada",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Quebec, Canada",
+        "confirmed": 795752,
+        "deaths": 12310,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Repatriated Travellers",
+        "country": "Canada",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Repatriated Travellers, Canada",
+        "confirmed": 13,
+        "deaths": 0,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Saskatchewan",
+        "country": "Canada",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Saskatchewan, Canada",
+        "confirmed": 100173,
+        "deaths": 961,
+        "recovered": null
+      },
+      {
+        "city": null,
+        "province": "Yukon",
+        "country": "Canada",
+        "lastUpdate": "2022-01-17T04:21:08+00:00",
+        "keyId": "Yukon, Canada",
+        "confirmed": 2638,
+        "deaths": 15,
+        "recovered": null
+      }
+    ]
+  }
+}

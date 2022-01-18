@@ -9,7 +9,7 @@
   It should work with most 6.x versions, but that is guaranteed. 
 
   — Love Lagerkvist, 220114
-     Malmö Universitet
+  Malmö Universitet
 */
 
 #include <ArduinoJson.h>
@@ -18,7 +18,7 @@
 const byte LED_PIN = 6;
 
 // The brightness of our LED
-int brightness = 0;
+int LEDBrightness = 0;
 
 void setup() {
     // Declaring the digital LED pin as output
@@ -49,10 +49,10 @@ void readJson() {
 
     // deserializeJson puts the deserialized json back into the variable
     // `jsonInput`, after which we can extract values at will.
-    brightness = jsonInput["brightness"];
+    LEDBrightness = jsonInput["brightness"];
 }
 
 void loop() {
     readJson();
-    analogWrite(LED_PIN, brightness);
+    analogWrite(LED_PIN, LEDBrightness);
 }

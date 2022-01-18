@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" type="module"></script>
+    <title>Arduino as API II - Reading Joystick Data</title>
+</head>
+
+<body>
+    <main>
+        <section>
+            <h2>1. Request access to a port</h2>
+            <p>The Web Serial API requires the user to give us persmission to access the serial ports. This action can
+                only
+                be triggered thorugh user input, so let's make a button to do that!</p>
+            <button id="request-port-access">Get serial ports</button>
+        </section>
+        <section>
+            <h2>2. Make sure the Arduino is connected</h2>
+            <p>If all goes well, you Arduino should be connected after selecting the corresponding port.
+            <p>
+            <p id="connection-status">No Arduino connected.</p>
+        </section>
+        <section>
+            <h2>3. Read data</h2>
+            <ul>
+                <li><strong>x </strong><span id="joystick-x">null</span></li>
+                <li><strong>y </strong><span id="joystick-y">null</span></li>
+                <li><strong>pressed </strong><span id="joystick-pressed">null</span></li>
+            </ul>
+        </section>
+    </main>
+</body>
+
+</html>
