@@ -10,8 +10,7 @@
 */
 
 
-// const openAIKey = "";
-const openAIKey = "Bearer sk-xrPIYC5oiX7qFbxiKB2bPb3KLz9Mi6aB6IS2LC07";
+const openAIKey = "";
 if (openAIKey.length === 0) {
   alert("You need to enter an API or your request will fail.")
 }
