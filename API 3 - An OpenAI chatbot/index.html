@@ -5,16 +5,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
         <script src="script.js" type="module"></script>
-        <title>API II</title>
+        <title>API III</title>
     </head>
     <body>
         <main>
-            <h1>OpenAI API Test</h1>
-            <label>Prompt</label>
-            <input type="text" id="prompt-text">
-            <input type="button" id="prompt-submit" value="Submit">
-            <h2>Response</h2>
-            <p id="response"></p>
+            <h1>OpenAI API Chatbot</h1>
+            <section id="conversation">
+            </section>
+
+            <section id="input">
+                <input type="text" id="message-text">
+                <input type="button" id="message-send" value="Send">
+            </section>
         </main>
     </body>
 </html>
