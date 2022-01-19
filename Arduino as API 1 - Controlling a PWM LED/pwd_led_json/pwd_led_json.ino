@@ -3,13 +3,12 @@
   by communication to a JS application over Web Serial and JSON.
   
   You want to have the PWM LED connected to D6 on your board, 
-  like: https://hackster.imgix.net/uploads/attachments/692290/arduino_pwm_k3R9OhQ9qE.png?auto=compress%2Cformat&w=680&h=510&fit=max
+  see the circut diagram in: arduino_as_api_1-LED_bb.pdf
 
   This code assumes you have version 16.19.1 of ArduinoJson.
   It should work with most 6.x versions, but that is guaranteed. 
 
-  — Love Lagerkvist, 220114
-  Malmö Universitet
+  — Love Lagerkvist, 220114, Malmö Universitet
 */
 
 #include <ArduinoJson.h>

@@ -1,5 +1,13 @@
-
 /*
+  A sketch that dynamically sends the current state of the joystick 
+  to a JS application over Web Serial and JSON.
+  
+  You want to have the joystick to you board see the circut diagram in:
+  arduino_as_api_2-joystick_bb.pdf
+
+  This code assumes you have version 16.19.1 of ArduinoJson.
+  It should work with most 6.x versions, but that is guaranteed. 
+
  - Love Lagerkvist, 220117, Malmö University
  */
 
