@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" type="module"></script>
-    <title>Arduino as API III - Joystick & PWM LED</title>
+    <title>Arduino as API II</title>
 </head>
 
 <body>
@@ -25,15 +25,7 @@
             <p id="connection-status">No Arduino connected.</p>
         </section>
         <section>
-            <h2>3. Read data</h2>
-            <ul>
-                <li><strong>x </strong><span id="joystick-x">null</span></li>
-                <li><strong>y </strong><span id="joystick-y">null</span></li>
-                <li><strong>pressed </strong><span id="joystick-pressed">null</span></li>
-            </ul>
-        </section>
-        <section>
-            <h2>4. Send data</h2>
+            <h2>3. Send data</h2>
             <input type="range" id="brightness-slider" min="0" max="255" list="tickmarks">
             <datalist id="tickmarks">
                 <option value="0" label="0"></option>

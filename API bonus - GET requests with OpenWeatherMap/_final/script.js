@@ -35,3 +35,32 @@ const JSONRequest = async (url, options, callback) => {
     throw new Error(errorMessage);
   }
 }
+
+
+/* OpenWeatherMap uses GET requests, which means that we pass
+   parameters as SearchParams. The eaiest way to do this is to
+   make an object with the params, appending them to a URL object
+   using the `URLSearchParams` constructor.
+   See my demo for more details. */
+const url = new URL("https://api.openweathermap.org/data/2.5/weather");
+const params = {
+  q: "stockholm, se",
+  appid: openWeatherMapAPIKey,
+  units: "metric",
+}
+
+url.search = new URLSearchParams(params);
+
+/* `state` is just an object that we use to keep track
+   of all of our application state. In this example, we
+   only have one property, `reponses`, but you could image
+   adding more properties to model the user interaction. */
+const state = {
+  responses: [],
+}
+
+// Check the console to see the returned JSON/object
+JSONRequest(url, {}, (data => {
+  state.responses.push(data);
+  console.dir(state);
+}));
