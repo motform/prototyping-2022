@@ -17,11 +17,8 @@ const byte JOYSTICK_PIN_X = A0;
 const byte JOYSTICK_PIN_Y = A2;
 const byte JOYSTICK_PIN_BUTTON = 2;
 
-int joystickRawX = 0;
-int joystickRawY = 0;
-
-int joystickMappedX = 0;
-int joystickMappedY = 0;
+int joystickX = 0;
+int joystickY = 0;
 
 bool joystickPressed = 0;
 
@@ -36,12 +33,8 @@ void setup() {
 
 void updateJoystick() {
     // read the raw values from the joystick's axis
-    joystickRawX = analogRead(JOYSTICK_PIN_X);
-    joystickRawY = analogRead(JOYSTICK_PIN_Y);
-
-    // `map` the values to fit to a range that makes more logical sense
-    joystickMappedX = map(joystickRawX, 0, 1023, -512, 512);
-    joystickMappedY = map(joystickRawY, 0, 1023, -512, 512);
+    joystickX = analogRead(JOYSTICK_PIN_X);
+    joystickY = analogRead(JOYSTICK_PIN_Y);
 
     // The button reads 1 when not pressed and 0 when pressed
     // This is a bit confusing, so we compare it to LOW to 
@@ -53,8 +46,8 @@ void updateJoystick() {
 void sendJoystickJSON() {
   StaticJsonDocument<56> json;
 
-  json["x"] = joystickMappedX;
-  json["y"] = joystickMappedY;
+  json["x"] = joystickX;
+  json["y"] = joystickY;
   json["pressed"] = joystickPressed;
 
   serializeJson(json, Serial);

@@ -16,12 +16,6 @@ if (!("serial" in navigator)) {
 }
 
 
-const updateDataDisplay = () => {
-  document.querySelector("#joystick-x").innerHTML       = state.joystick.x;
-  document.querySelector("#joystick-y").innerHTML       = state.joystick.y;
-  document.querySelector("#joystick-pressed").innerHTML = state.joystick.pressed;
-}
-
 const requestPortButton = document.querySelector("#request-port-access");
 requestPortButton.addEventListener("pointerdown", async (event) => {
   // First, request port access, which hopefully leads to a connection
@@ -62,17 +56,61 @@ const readJSONFromArduino = async (propertyName, callback) => {
     if (lines.length > 1) {
       lineBuffer = lines.pop();
       const line = lines.pop().trim();
-      state[propertyName] = JSON.parse(line);
-      callback();
+      const json = JSON.parse(line);
+      state[propertyName] = json;
+      callback(json);
     }
   }
 }
 
+
+const updateDataDisplay = () => {
+  document.querySelector("#joystick-x").innerHTML       = state.joystick.x;
+  document.querySelector("#joystick-y").innerHTML       = state.joystick.y;
+  document.querySelector("#joystick-pressed").innerHTML = state.joystick.pressed;
+}
+
+
+// This is the same as the Arduino function `map`, a name that is already occupied in JS by something completely different (would you have guessed)
+const mapRange = (value, fromLow, fromHigh, toLow, toHigh) => {
+  return toLow + (toHigh - toLow) * (value - fromLow) / (fromHigh - fromLow);
+}
+
+
+const updateCanvas = () => {
+  ctx.clearRect(0, 0, 512, 512); // Clear the screen
+
+  if (state.joystick.x) {
+    const x = mapRange(state.joystick.x, 0, 1024, 0, 512);
+    const y = mapRange(state.joystick.y, 0, 1024, 0, 512);
+
+    ctx.beginPath();
+    ctx.arc(x, y, 10, 0, 2 * Math.PI);
+
+    if (state.joystick.pressed) {
+      ctx.fillStyle = "rebeccapurple";
+    } else {
+      ctx.fillStyle = "black";
+    }
+
+    ctx.fill();
+  }
+
+  window.requestAnimationFrame(updateCanvas);
+}
+
+
+const canvas = document.querySelector("#joystick-canvas");
+const ctx = canvas.getContext("2d");
+
 const state = {
   serial: null,
   joystick: {
-    x: 0,
-    y: 0,
+    x: null,
+    y: null,
     pressed: false,
   }
 }
+
+canvas.style.backgroundColor = "gray";
+window.requestAnimationFrame(updateCanvas);
