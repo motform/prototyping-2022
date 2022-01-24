@@ -101,7 +101,9 @@ const updateCanvas = () => {
 
 
 const canvas = document.querySelector("#joystick-canvas");
+canvas.style.backgroundColor = "gray";
 const ctx = canvas.getContext("2d");
+
 
 const state = {
   serial: null,
@@ -112,5 +114,4 @@ const state = {
   }
 }
 
-canvas.style.backgroundColor = "gray";
 window.requestAnimationFrame(updateCanvas);
