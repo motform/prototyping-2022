@@ -8,8 +8,8 @@
   This code assumes you have version 16.19.1 of ArduinoJson.
   It should work with most 6.x versions, but that is guaranteed. 
 
- - Love Lagerkvist, 220117, Malmö University
- */
+  - Love Lagerkvist, 220117, Malmö University
+*/
 
 #include <ArduinoJson.h>
 
@@ -19,16 +19,15 @@ const byte JOYSTICK_PIN_BUTTON = 2;
 
 int joystickX = 0;
 int joystickY = 0;
-
 bool joystickPressed = 0;
 
 void setup() {
-  pinMode(JOYSTICK_PIN_X, INPUT);
-  pinMode(JOYSTICK_PIN_Y, INPUT);
-  pinMode(JOYSTICK_PIN_BUTTON, INPUT_PULLUP);
+    pinMode(JOYSTICK_PIN_X, INPUT);
+    pinMode(JOYSTICK_PIN_Y, INPUT);
+    pinMode(JOYSTICK_PIN_BUTTON, INPUT_PULLUP);
 
-  Serial.begin(9600); 
-  while (!Serial) continue;
+    Serial.begin(9600); 
+    while (!Serial) continue;
 }
 
 void updateJoystick() {
@@ -43,18 +42,18 @@ void updateJoystick() {
     joystickPressed = digitalRead(JOYSTICK_PIN_BUTTON) == LOW;  
 }
 
-void sendJoystickJSON() {
-  StaticJsonDocument<56> json;
+void writeJSONToSerial() {
+    StaticJsonDocument<56> json;
 
-  json["x"] = joystickX;
-  json["y"] = joystickY;
-  json["pressed"] = joystickPressed;
+    json["x"] = joystickX;
+    json["y"] = joystickY;
+    json["pressed"] = joystickPressed;
 
-  serializeJson(json, Serial);
-  Serial.println();
+    serializeJson(json, Serial);
+    Serial.println();
 }
 
 void loop() {
     updateJoystick();
-    sendJoystickJSON();
+    writeJSONToSerial();
 }

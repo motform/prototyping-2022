@@ -32,7 +32,7 @@ void setup() {
     while (!Serial) continue;
 }
 
-void readJson() {
+void readJsonFromSerial() {
     /* Use https://arduinojson.org/v6/assistant/ to get size of buffer
        Here we assume the JSON { "brightness": {0-255} } */
     StaticJsonDocument<32> jsonInput;
@@ -52,6 +52,6 @@ void readJson() {
 }
 
 void loop() {
-    readJson();
+    readJsonFromSerial();
     analogWrite(LED_PIN, LEDBrightness);
 }
