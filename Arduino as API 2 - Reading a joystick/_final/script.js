@@ -44,14 +44,14 @@ const readJSONFromArduino = async (propertyName, callback) => {
 
   // Listen to data coming from the serial device.
   while (true) {
-    const { value, done } = await reader.read();
+    const response = await reader.read();
 
-    if (done) {
+    if (response.done) {
       reader.releaseLock();
       break;
     }
 
-    lineBuffer += value;
+    lineBuffer += response.value;
     const lines = lineBuffer.split("\n");
     if (lines.length > 1) {
       lineBuffer = lines.pop();
@@ -108,8 +108,8 @@ const ctx = canvas.getContext("2d");
 const state = {
   serial: null,
   joystick: {
-    x: null,
-    y: null,
+    x: 0,
+    y: 0,
     pressed: false,
   }
 }
