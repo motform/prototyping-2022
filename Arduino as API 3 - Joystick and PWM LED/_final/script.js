@@ -35,7 +35,9 @@ requestPortButton.addEventListener("pointerdown", async (event) => { // note tha
   // We start the reader function, an async loop that gets data from serial (if any) and then calls the callback
   readJSONFromArduino("joystick", async () => {
     updateDataDisplay();
-    setLEDToJoystickX();
+    if (state.joystick.pressed) {
+      writeJoystickBrightnessToArduino();
+    }
   });
 });
 
@@ -77,7 +79,6 @@ const readJSONFromArduino = async (propertyName, callback) => {
 // Write to the Arduino and run the callback, if any
 const writeJSONToArduino = async (propertyName, callback) => {
   if (!state.serial) throw new Error("No Arduino connected to write the data to!");
-  if (state.writing) return; // it is possible to send double writes, which we do not want!
 
   state.writing = true;
   const data = state[propertyName]; // First, we get the object an object and turn it into JSON.
@@ -97,8 +98,11 @@ const writeJSONToArduino = async (propertyName, callback) => {
 
 
 // Take the joystick data, map it to the LEDs range and and shuffle it over to the writer
-const setLEDToJoystickX = async () => {
-  state.dataToWrite.brightness = mapRange(state.joystick.x, -512, 512, 0, 255);
+const writeJoystickBrightnessToArduino = async () => {
+  const brightnessFromBothAxies = state.joystick.x + state.joystick.y;
+  state.dataToWrite.brightness = mapRange(brightnessFromBothAxies, // Combine both the X & Y axis
+                                          0, 2048, // From
+                                          0, 255); // To
   writeJSONToArduino("dataToWrite");
 }
 
@@ -117,12 +121,42 @@ const mapRange = (value, fromLow, fromHigh, toLow, toHigh) => {
 }
 
 
+const updateCanvas = () => {
+  ctx.clearRect(0, 0, 512, 512); // Clear the screen
+
+  if (state.joystick.x) {
+    const x = mapRange(state.joystick.x, 0, 1024, 0, 512);
+    const y = mapRange(state.joystick.y, 0, 1024, 0, 512);
+
+    ctx.beginPath();
+    ctx.arc(x, y, 10, 0, 2 * Math.PI);
+    ctx.strokeStyle = "white";
+
+    if (state.joystick.pressed) {
+      ctx.fillStyle = "yellow";
+    } else {
+      ctx.fillStyle = "gray";
+    }
+
+    ctx.fill();
+  }
+
+  window.requestAnimationFrame(updateCanvas);
+}
+
+
 const brightnessSlider = document.querySelector("#brightness-slider");
 brightnessSlider.addEventListener("input", (event) => {
-  const brightness = event.target.value;
-  state.dataToWrite.brightness = parseInt(brightness);
-  writeJSONToArduino("dataToWrite");
+  if (!state.joystick.pressed) {
+    const brightness = event.target.value;
+    state.dataToWrite.brightness = parseInt(brightness);
+    writeJSONToArduino("dataToWrite");
+  }
 });
+
+
+const canvas = document.querySelector("#joystick-canvas");
+const ctx = canvas.getContext("2d");
 
 
 const state = {
@@ -135,5 +169,7 @@ const state = {
     y: 0,
     pressed: false,
   },
-  writing: false,
 }
+
+
+window.requestAnimationFrame(updateCanvas); // start the canvas animation

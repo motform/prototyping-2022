@@ -63,7 +63,10 @@ void readJSONFromSerial() {
     deserializeJson(jsonInput, Serial); // we don't use the jsonError 
 
     // DeserializeJson puts the deserialized json back into the variable `jsonInput`, after which we can extract values at will.
-    LEDBrightness = jsonInput["brightness"];
+    int newBrightness = jsonInput["brightness"];
+    if (newBrightness) {
+      LEDBrightness = newBrightness;
+    }
 }
 
 
