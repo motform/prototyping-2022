@@ -1,4 +1,5 @@
 /*
+  The final sketch, combining I & II into a bi-directional package!
   - Love Lagerkvist, 220117, Malmö University
 */
 
@@ -10,10 +11,8 @@ const byte JOYSTICK_PIN_Y = A2;
 const byte JOYSTICK_PIN_BUTTON = 2;
 
 // Joystick variables
-int joystickRawX = 0;
-int joystickRawY = 0;
-int joystickMappedX = 0;
-int joystickMappedY = 0;
+int joystickX = 0;
+int joystickY = 0;
 bool joystickPressed = 0;
 
 // LED pins
@@ -35,22 +34,18 @@ void setup() {
 
 void updateJoystick() {
     // read the raw values from the joystick's axis
-    joystickRawX = analogRead(JOYSTICK_PIN_X);
-    joystickRawY = analogRead(JOYSTICK_PIN_Y);
-
-    // `map` the values to fit to a range that makes more logical sense
-    joystickMappedX = map(joystickRawX, 0, 1023, -512, 512);
-    joystickMappedY = map(joystickRawY, 0, 1023, -512, 512);
+    joystickX = analogRead(JOYSTICK_PIN_X);
+    joystickY = analogRead(JOYSTICK_PIN_Y);
 
     // The button reads 1 when not pressed and 0 when pressed This is a bit confusing, so we compare it to LOW to effectievly flip the bit. I.e., if the button is pressed we turn a 0 into 1, or logical true.
     joystickPressed = digitalRead(JOYSTICK_PIN_BUTTON) == LOW;  
 }
 
-void sendJoystickJSON() {
+void writeJSONToSerial() {
     StaticJsonDocument<56> json;
 
-    json["x"] = joystickMappedX;
-    json["y"] = joystickMappedY;
+    json["x"] = joystickX;
+    json["y"] = joystickY;
     json["pressed"] = joystickPressed;
 
     // We can write directly to Serial using ArduinoJson!
@@ -59,7 +54,7 @@ void sendJoystickJSON() {
 }
 
 
-void readLEDJSON() {
+void readJSONFromSerial() {
     /* Use https://arduinojson.org/v6/assistant/ to get size of buffer
        Here we assume the JSON { "brightness": {0-255} } */
     StaticJsonDocument<32> jsonInput;
@@ -68,7 +63,10 @@ void readLEDJSON() {
     deserializeJson(jsonInput, Serial); // we don't use the jsonError 
 
     // DeserializeJson puts the deserialized json back into the variable `jsonInput`, after which we can extract values at will.
-    LEDBrightness = jsonInput["brightness"];
+    int newBrightness = jsonInput["brightness"];
+    if (newBrightness) {
+      LEDBrightness = newBrightness;
+    }
 }
 
 
@@ -78,7 +76,7 @@ void updateLED() {
 
 void loop() {
     updateJoystick();
-    sendJoystickJSON();
-    readLEDJSON();
+    writeJSONToSerial();
+    readJSONFromSerial();
     updateLED();
 }

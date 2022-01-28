@@ -35,7 +35,7 @@ requestPortButton.addEventListener("pointerdown", async (event) => {
   // Next, we need to open a "writer", a stream that we can pour data into.
   console.log("Connected to Arduino and updated state:")
   console.log(state);
-  readJSONFromArduino("joystick", updateDataDisplay);
+  await readJSONFromArduino("joystick", updateDataDisplay);
 });
 
 
@@ -50,20 +50,21 @@ const readJSONFromArduino = async (propertyName, callback) => {
 
   // Listen to data coming from the serial device.
   while (true) {
-    const { value, done } = await reader.read();
+    const response = await reader.read();
 
-    if (done) {
+    if (response.done) {
       reader.releaseLock();
       break;
     }
 
-    lineBuffer += value;
+    lineBuffer += response.value;
     const lines = lineBuffer.split("\n");
     if (lines.length > 1) {
       lineBuffer = lines.pop();
       const line = lines.pop().trim();
-      state[propertyName] = JSON.parse(line);
-      callback();
+      const json = JSON.parse(line);
+      state[propertyName] = json;
+      callback(json);
     }
   }
 }
