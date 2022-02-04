@@ -15,3 +15,9 @@ body {
 li {
     list-style-type: none;
 }
+
+canvas {
+    margin: 24px 0;
+    border: 1px solid lightgray;
+    background: radial-gradient(farthest-corner at 512px 512px, rgba(255, 246, 0, 1) 0%, rgba(118, 120, 10, 1) 35%, rgba(0, 0, 0, 1) 100%)
+}

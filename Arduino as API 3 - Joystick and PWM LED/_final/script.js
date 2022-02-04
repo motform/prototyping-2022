@@ -30,10 +30,9 @@ requestPortButton.addEventListener("pointerdown", async (event) => { // note tha
   await state.serial.open({ baudRate: 9600 }); 
 
   document.querySelector("#connection-status").innerHTML = "Arduino is connected!";
-  console.log("Connected to Arduino and updated state:\n", state)
 
   // We start the reader function, an async loop that gets data from serial (if any) and then calls the callback
-  readJSONFromArduino("joystick", async () => {
+  readJSONFromArduino(async () => {
     updateDataDisplay();
     if (state.joystick.pressed) {
       writeJoystickBrightnessToArduino();
@@ -43,7 +42,7 @@ requestPortButton.addEventListener("pointerdown", async (event) => { // note tha
 
 
 // This function reads data from the Arduino and calls the callback, if any.
-const readJSONFromArduino = async (propertyName, callback) => {
+const readJSONFromArduino = async (callback) => {
   if (!state.serial) throw new Error("No Arduino connected to read the data from!");
 
   // This part is a bit more complex, but you can safely "hand wave it".
@@ -69,7 +68,7 @@ const readJSONFromArduino = async (propertyName, callback) => {
     if (lines.length > 1) {                   // We have a complete JSON response!
       lineBuffer = lines.pop();               // Set the buffer to any data from the next response
       const line = lines.pop().trim();        // Get the JSON and remove the newline
-      state[propertyName] = JSON.parse(line); // Parse the JSON and put it in the state under `propertyName`
+      state.joystick = JSON.parse(line);      // Parse the JSON and put it in the state under joystick
       if (callback) callback();               // Run the callback function, if any
     }
   }
@@ -77,12 +76,11 @@ const readJSONFromArduino = async (propertyName, callback) => {
 
 
 // Write to the Arduino and run the callback, if any
-const writeJSONToArduino = async (propertyName, callback) => {
+const writeJSONToArduino = async (callback) => {
   if (!state.serial) throw new Error("No Arduino connected to write the data to!");
 
-  state.writing = true;
-  const data = state[propertyName]; // First, we get the object an object and turn it into JSON.
-  const json = JSON.stringify(data, null, 0); // Transform our internal JS object into JSON representation, which we store as a string
+  const data = state.dataToWrite; // First, we get the object an object and turn it into JSON.
+  const json = JSON.stringify(data); // Transform our internal JS object into JSON representation, which we store as a string
 
   // The serial writer will want the data in a specific format, which we can do with the TextEncoder object, see https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder
   const payload = new TextEncoder().encode(json);
@@ -93,7 +91,6 @@ const writeJSONToArduino = async (propertyName, callback) => {
   writer.releaseLock();
 
   if (callback) callback(); // Run the callback function, if any
-  state.writing = false;
 }
 
 
@@ -103,7 +100,7 @@ const writeJoystickBrightnessToArduino = async () => {
   state.dataToWrite.brightness = mapRange(brightnessFromBothAxies, // Combine both the X & Y axis
                                           0, 2048, // From
                                           0, 255); // To
-  writeJSONToArduino("dataToWrite");
+  writeJSONToArduino();
 }
 
 
@@ -133,7 +130,7 @@ const updateCanvas = () => {
     ctx.strokeStyle = "white";
 
     if (state.joystick.pressed) {
-      ctx.fillStyle = "yellow";
+      ctx.fillStyle = "rebeccapurple";
     } else {
       ctx.fillStyle = "gray";
     }
@@ -150,7 +147,7 @@ brightnessSlider.addEventListener("input", (event) => {
   if (!state.joystick.pressed) {
     const brightness = event.target.value;
     state.dataToWrite.brightness = parseInt(brightness);
-    writeJSONToArduino("dataToWrite");
+    writeJSONToArduino();
   }
 });
 
