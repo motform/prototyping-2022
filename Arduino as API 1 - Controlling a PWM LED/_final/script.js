@@ -18,7 +18,6 @@ if (!("serial" in navigator)) {
   alert("Your browser does not support Web Serial, try using something Chromium based.")
 }
 
-
 const requestPortButton = document.querySelector("#request-port-access");
 
 requestPortButton.addEventListener("pointerdown", async (event) => {
@@ -46,11 +45,11 @@ brightnessSlider.addEventListener("input", (event) => { // NOTE: input vs change
 
 
 // Try to write the currently set brightness to the Arduino
-const writeJSONToArduino = async (propertyName, callback) => {
+const writeJSONToArduino = async () => {
   if (!state.serial) throw new Error("No Arduino connected to write the data to!");
 
-  const data = state[propertyName]; // First, we get the object an object and turn it into JSON.
-  const json = JSON.stringify(data, null, 0); // Transform our internal JS object into JSON representation, which we store as a string
+  const data = state.dataToWrite; // First, we get the object an object and turn it into JSON.
+  const json = JSON.stringify(data); // Transform our internal JS object into JSON representation, which we store as a string
 
   // The serial writer will want the data in a specific format, which we can do with the TextEncoder object, see https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder
   const payload = new TextEncoder().encode(json);
@@ -58,16 +57,12 @@ const writeJSONToArduino = async (propertyName, callback) => {
   const writer = await state.serial.writable.getWriter();
   await writer.write(payload);
   writer.releaseLock();
-
-  if (callback) {
-    callback();
-  }
 }
 
 
 const state = {
+  serial: null,
   dataToWrite: {
     brightness: 0,
   },
-  serial: null,
 }
